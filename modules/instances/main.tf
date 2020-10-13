@@ -1,6 +1,6 @@
 resource "aws_instance" "crew_test_instance" {
   ami           = "${data.aws_ami.ubuntu_ami.image_id}"
-  instance_type = "var.instance_type"
+  instance_type = var.instance_type
 }
 
 data "aws_ami" "ubuntu_ami" {
@@ -17,11 +17,11 @@ terraform {
   backend "s3" {
     shared_credentials_file = "/home/krishnanunni_n_meon/.aws/credentials"
     # Replace this with your bucket name!
-    bucket         = "var.db_remote_state_bucket"
-    key            = "var.db_remote_state_key"
+    bucket         = var.db_remote_state_bucket
+    key            = var.db_remote_state_key
     region         = "us-east-1"
     # Replace this with your DynamoDB table name!
-    dynamodb_table = "var.db_remote_state_table"
+    dynamodb_table = var.db_remote_state_table
     encrypt        = true
   }
 }
