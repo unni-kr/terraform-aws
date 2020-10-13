@@ -1,6 +1,10 @@
 resource "aws_instance" "crew_test_instance" {
-  ami           = "${data.aws_ami.ubuntu_ami.image_id}"
+  ami = var.ami_id != "" ? data.aws_ami.ubuntu_ami.image_id : var.ami_id
   instance_type = var.instance_type
+    
+  tags = {
+    Name = var.instance_name
+  }
 }
 
 data "aws_ami" "ubuntu_ami" {

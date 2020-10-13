@@ -14,14 +14,30 @@ variable "db_remote_state_key" {
   default = "instance-from-module/terraform.tfstate"
 }
 
-variable "instance_type" {
-  description = "type of ec2 instance"
-  type = string
-  default = "t2.micro"
-}
-
 variable "db_remote_state_table" {
   description = "name of dynamodb table"
   type = string
   default = "terraform-up-and-running-locks"
+}
+
+variable "instance_type" {
+  description = "type of ec2 instance"
+  type = string
+  default = ""
+}
+
+variable "ami_id" {
+  description = "The id of ami used for ec2 instance"
+  type        = string
+  default = ""
+}
+
+variable "environment" {
+  description = "environemnt where the resources are created. eg test/int/prod"
+  type = string
+  default = "test"
+}
+
+variable "environemnt_config_variable" {
+  type = map
 }

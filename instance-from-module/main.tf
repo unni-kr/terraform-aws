@@ -5,12 +5,22 @@ provider "aws" {
 }
 
 module "instances" {
-  source = "/home/krishnanunni_n_meon/iFlightCrew/iFlight-Creq-Infra/modules/instances"
-  instance_type = var.instance_type
-  db_remote_state_bucket = var.db_remote_state_bucket
-  db_remote_state_key = var.db_remote_state_key
-  db_remote_state_table = var.db_remote_state_table
+  # path to the module directory
+  source = "../modules/instances"
+  # instance_type = local.environment_config.test.instance_type
+  # ami_id = local.environment_config.test.ami_id
+  # instance_name = local.env_name
+
+  instance_type = var.environemnt_config_variable["${var.environment}"]["instance_type"]
+  ami_id = var.environemnt_config_variable["${var.environment}"]["ami_id"]
+  instance_name = var.environment
 }
+  
+# local variables
+# locals {
+#   env_name = yamldecode(file("${path.module}/environemt.yml")).environment_name
+#   environment_config = yamldecode(file("${path.module}/environemt_config.yml"))
+# }
 
 terraform {
   backend "s3" {
