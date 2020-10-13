@@ -5,32 +5,17 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami           = "${data.aws_ami.centos.image_id}"
+  ami           = "${data.aws_ami.ubuntu_ami.image_id}"
   instance_type = "t2.micro"
 }
 
-data "aws_ami" "centos" {
+data "aws_ami" "ubuntu_ami" {
   most_recent = true
-  owners      = ["aws-marketplace"]
+  owners      = ["099720109477"]
 
   filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name   = "image-type"
-    values = ["machine"]
-  }
-
-  filter {
-    name   = "name"
-    values = ["CentOS Linux 7*"]
+    name = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 }
 
