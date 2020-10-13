@@ -11,13 +11,11 @@ variable "instance_type" {
 variable "instance_count" {
   description = "The number of EC2 Instances to run"
   type        = string
-  default = 1
 }
 
 variable "ami_id" {
   description = "The id of ami used for ec2 instance"
   type        = string
-  default = ""
 }
 
 variable "instance_name" {

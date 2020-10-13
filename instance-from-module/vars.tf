@@ -33,9 +33,8 @@ variable "ami_id" {
 }
 
 variable "environment" {
-  description = "environemnt where the resources are created. eg test/int/prod"
+  description = "environemnt where the resources are created. eg test/prod"
   type = string
-  default = "test"
 }
 
 variable "environemnt_config_variable" {
