@@ -12,16 +12,22 @@ module "instances" {
   # ami_id = local.environment_config.test.ami_id
   # instance_name = local.env_name
 
-  instance_type = var.environemnt_config_variable["${var.environment}"]["instance_type"]
-  ami_id = var.environemnt_config_variable["${var.environment}"]["ami_id"]
+  # instance_type = var.environemnt_config_variable["${var.environment}"]["instance_type"]
+  # ami_id = var.environemnt_config_variable["${var.environment}"]["ami_id"]
+  # instance_name = "${var.environment}-instance" 
+
+  instance_type = local.environment_config["instance_type"]
+  ami_id = local.environment_config["ami_id"]
   instance_name = "${var.environment}-instance"
+
 }
   
 # local variables
-# locals {
-#   env_name = yamldecode(file("${path.module}/environemt.yml")).environment_name
-#   environment_config = yamldecode(file("${path.module}/environemt_config.yml"))
-# }
+locals {
+  # env_name = yamldecode(file("${path.module}/environemt.yml")).environment_name
+  # environment_config = yamldecode(file("${path.module}/environemt_config.yml"))
+  environment_config = "${lookup(var.environemnt_config_variable, var.environment)}"
+}
 
 terraform {
   backend "s3" {
