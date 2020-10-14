@@ -19,24 +19,24 @@ resource "aws_s3_bucket" "terraform_state" {
     }
   }
 }
-resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-up-and-running-locks"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "LockID"
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
+# resource "aws_dynamodb_table" "terraform_locks" {
+#   name         = "terraform-up-and-running-locks"
+#   billing_mode = "PAY_PER_REQUEST"
+#   hash_key     = "LockID"
+#   attribute {
+#     name = "LockID"
+#     type = "S"
+#   }
+# }
 
 output "s3_bucket_arn" {
   value       = aws_s3_bucket.terraform_state.arn
   description = "The ARN of the S3 bucket"
 }
-output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.terraform_locks.name
-  description = "The name of the DynamoDB table"
-}
+# output "dynamodb_table_name" {
+#   value       = aws_dynamodb_table.terraform_locks.name
+#   description = "The name of the DynamoDB table"
+# }
 
 terraform {
   backend "s3" {
@@ -46,7 +46,7 @@ terraform {
     key            = "s3_remote_backend/terraform.tfstate"
     region         = "us-east-1"
     # Replace this with your DynamoDB table name!
-    dynamodb_table = "terraform-up-and-running-locks"
+    # dynamodb_table = "terraform-up-and-running-locks"
     encrypt        = true
   }
 }
