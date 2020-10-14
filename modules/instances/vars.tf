@@ -10,8 +10,7 @@ variable "instance_type" {
 
 variable "instance_count" {
   description = "The number of EC2 Instances to run"
-  type        = string
-  default = 1
+  type        = number
 }
 
 variable "ami_id" {

@@ -13,7 +13,7 @@ module "instances" {
   instance_type = local.environment_config["instance_type"]
   ami_id = local.environment_config["ami_id"]
   instance_name = "${var.environment}-instance"
-
+  instance_count = local.environment_config["instance_count"]
 }
   
 # local variables
@@ -25,11 +25,14 @@ terraform {
   backend "s3" {
     # shared_credentials_file on;y rquitred when aws credentials not set as environmenr variable
     # shared_credentials_file = "/home/krishnanunni_n_meon/.aws/credentials"
+    
     # Replace this with your bucket name!
     bucket         = "crew-terraform-state-bucket"
     key            = "instance-from-module/terraform.tfstate"
     region         = "us-east-1"
+    
     # Replace this with your DynamoDB table name!
+    #use only when you need dynamodb locking
     # dynamodb_table = "terraform-up-and-running-locks"
     encrypt        = true
   }

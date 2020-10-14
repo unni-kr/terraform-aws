@@ -20,18 +20,6 @@
 #   default = "terraform-up-and-running-locks"
 # }
 
-# variable "instance_type" {
-#   description = "type of ec2 instance"
-#   type = string
-#   default = ""
-# }
-
-# variable "ami_id" {
-#   description = "The id of ami used for ec2 instance"
-#   type        = string
-#   default = ""
-# }
-
 variable "environment" {
   description = "environemnt where the resources are created. eg test/prod"
   type = string
