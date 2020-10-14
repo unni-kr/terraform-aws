@@ -7,13 +7,14 @@ provider "aws" {
 module "instances" {
   # path to the module directory
   source = "../modules/instances"
+
   # instance_type = local.environment_config.test.instance_type
   # ami_id = local.environment_config.test.ami_id
   # instance_name = local.env_name
 
   instance_type = var.environemnt_config_variable["${var.environment}"]["instance_type"]
   ami_id = var.environemnt_config_variable["${var.environment}"]["ami_id"]
-  instance_name = var.environment
+  instance_name = "${var.environment}-instance"
 }
   
 # local variables
