@@ -22,3 +22,13 @@ variable "instance_name" {
   description = "name of instance"
   type = string
 }
+
+variable "subnet_id" {
+  description = "The id of subnet to attatch instance"
+  type        = string
+}
+
+variable "vpc_security_group_id" {
+  description = "The id of vpc_security_group to attatch instance"
+  type        = string
+}

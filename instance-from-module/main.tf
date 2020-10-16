@@ -14,6 +14,8 @@ module "instances" {
   ami_id = local.environment_config["ami_id"]
   instance_name = "${var.environment}-instance"
   instance_count = local.environment_config["instance_count"]
+  subnet_id = local.environment_config["subnet_id"]
+  vpc_security_group_id = local.environment_config["vpc_security_group_id"]
 }
   
 # local variables
