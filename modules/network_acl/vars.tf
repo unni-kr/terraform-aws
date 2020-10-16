@@ -3,7 +3,12 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_id" {
+variable "public_subnet_id" {
+  description = "specify id of the subnet"
+  type        = string
+}
+
+variable "private_subnet_id" {
   description = "specify id of the subnet"
   type        = string
 }

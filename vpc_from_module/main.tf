@@ -43,7 +43,8 @@ module "network_acl" {
   source = "../modules/network_acl"
 
   vpc_id    = module.vpc.instance_vpc_id
-  subnet_id = module.public_subnet.subnet_id
+  public_subnet_id = module.public_subnet.subnet_id
+  private_subnet_id = module.private_subnet.subnet_id
   #destination_cidr_block is optional. default value is provided in module
   # destination_cidr_block = var.destination_cidr_block
 }
@@ -71,7 +72,7 @@ terraform {
 
     # Replace this with your bucket name!
     bucket = "crew-terraform-state-bucket"
-    key    = "instance-from-module/terraform.tfstate"
+    key    = "vpc-from-module/terraform.tfstate"
     region = "us-east-1"
 
     # Replace this with your DynamoDB table name!
