@@ -39,15 +39,15 @@ module "security_group" {
   vpc_id = module.vpc.instance_vpc_id
 }
 
-module "network_acl" {
-  source = "../modules/network_acl"
+# module "network_acl" {
+#   source = "../modules/network_acl"
 
-  vpc_id    = module.vpc.instance_vpc_id
-  public_subnet_id = module.public_subnet.subnet_id
-  private_subnet_id = module.private_subnet.subnet_id
-  #destination_cidr_block is optional. default value is provided in module
-  # destination_cidr_block = var.destination_cidr_block
-}
+#   vpc_id    = module.vpc.instance_vpc_id
+#   public_subnet_id = module.public_subnet.subnet_id
+#   private_subnet_id = module.private_subnet.subnet_id
+#   #destination_cidr_block is optional. default value is provided in module
+#   # destination_cidr_block = var.destination_cidr_block
+# }
 
 module "internet_gateway" {
   source = "../modules/internet_gateway"

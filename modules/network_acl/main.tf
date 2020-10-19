@@ -1,6 +1,6 @@
 resource "aws_network_acl" "my_vpc_network_acl" {
   vpc_id     = var.vpc_id
-  subnet_ids = ["${var.public_subnet_id}","${var.private_subnet_id}"]
+  subnet_ids = ["${var.public_subnet_id}"]
 }
 
 resource "aws_network_acl_rule" "allow__ingress_port_22" {
