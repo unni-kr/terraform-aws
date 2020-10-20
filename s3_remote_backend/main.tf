@@ -1,7 +1,5 @@
 provider "aws" {
   region = "us-east-1"
-  shared_credentials_file = "/home/krishnanunni_n_meon/.aws/credentials"
-  profile = "default"
 }
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "crew-terraform-state-bucket"
@@ -41,7 +39,6 @@ output "s3_bucket_arn" {
 terraform {
   backend "s3" {
     # Replace this with your bucket name!
-    shared_credentials_file = "/home/krishnanunni_n_meon/.aws/credentials"
     bucket         = "crew-terraform-state-bucket"
     key            = "s3_remote_backend/terraform.tfstate"
     region         = "us-east-1"

@@ -9,3 +9,7 @@ output "public_subnet_id" {
 output "private_subnet_id" {
   value = module.private_subnet.subnet_id
 }
+
+output "environemnt_config_variable" {
+  value = var.environemnt_config_variable
+}

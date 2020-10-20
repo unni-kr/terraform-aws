@@ -1,8 +1,5 @@
 provider "aws" {
   region = "us-east-1"
-  # shared_credentials_file only rquitred when aws credentials not set as environment variable
-  # shared_credentials_file = "/home/krishnanunni_n_meon/.aws/credentials"
-  profile = "default"
 }
 
 module "vpc" {
@@ -39,16 +36,6 @@ module "security_group" {
   vpc_id = module.vpc.instance_vpc_id
 }
 
-# module "network_acl" {
-#   source = "../modules/network_acl"
-
-#   vpc_id    = module.vpc.instance_vpc_id
-#   public_subnet_id = module.public_subnet.subnet_id
-#   private_subnet_id = module.private_subnet.subnet_id
-#   #destination_cidr_block is optional. default value is provided in module
-#   # destination_cidr_block = var.destination_cidr_block
-# }
-
 module "internet_gateway" {
   source = "../modules/internet_gateway"
 
@@ -63,6 +50,23 @@ module "route" {
   internet_gateway_id = module.internet_gateway.my_vpc_internet_gateway_id
   #destination_cidr_block is optional. default value is provided in module
   # destination_cidr_block = var.destination_cidr_block
+}
+
+module "instances" {
+  source = "../modules/instances"
+
+  #arguments required for the module
+  instance_type = local.environment_config["instance_type"]
+  ami_id = local.environment_config["ami_id"]
+  instance_name = "${var.environment}-instance"
+  instance_count = local.environment_config["instance_count"]
+  subnet_id = local.environment_config["subnet_id"]
+  vpc_security_group_id = local.environment_config["vpc_security_group_id"]
+}
+  
+# local variables
+locals {
+  environment_config = "${lookup(var.environemnt_config_variable, var.environment)}"
 }
 
 terraform {

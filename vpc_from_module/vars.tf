@@ -33,3 +33,13 @@ variable "destination_cidr_block" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "environment" {
+  description = "environemnt where the resources are created. eg test/prod"
+  type = string
+}
+
+variable "environemnt_config_variable" {
+  description = "key value pair containning all configuration for every environment"
+  type = map
+}
